@@ -41,7 +41,7 @@ while (isset($f_rows[$c_index]) && ($f_rows[$c_index][1] == 0)) {
   if (isset($f_lookup_by_parent[$c_id])) {
     $f_index = $f_lookup_by_parent[$c_id];
     while (isset($f_rows[$f_index]) && ($f_rows[$f_index][1] == $c_id)) {
-      list($f_id, , , $f_name, $forum_desc, $num_topics, $num_replies, $lastpost_time, $lastposter) = $f_rows[$f_index];
+      list($f_id, , , $f_name, $forum_desc, $num_topics, $num_replies, $lastpost_time, $lastposter, $last_topic_id, $last_topic_title, $last_topic_replies) = $f_rows[$f_index];
       if (!forum_visible($user_id, $f_id)) {
         ++$f_index;
         continue;
@@ -49,10 +49,17 @@ while (isset($f_rows[$c_index]) && ($f_rows[$c_index][1] == 0)) {
       $forum_link = get_forum_link($f_id, $f_name, 'forumlink');
       $subforums = '';
       $moderated_by = ($showmoderators == 0) ? null : get_forum_moderators($f_id);
-      if ($num_topics == 0)
+      if ($num_topics == 0) {
         $lastpost = $lang['no_posts_yet'];
-      else
-        $lastpost = '<a href=index.php?a=member&m=' . $user_id . '>' . $lastposter . '</a><br />' . format_datetime($lastpost_time, $user_timezone);
+      } else {
+        if ($last_topic_id !== null) {
+          $last_topic_page = max(1, (int) ceil(((int) $last_topic_replies + 1) / $postsperpage));
+          $last_topic_link = get_topic_link2($last_topic_id, $last_topic_title, null, $last_topic_page);
+          $lastpost = '<strong>' . $last_topic_link . '</strong><br /><a href=index.php?a=member&m=' . $user_id . '>' . $lastposter . '</a><br />' . format_datetime($lastpost_time, $user_timezone);
+        } else {
+          $lastpost = '<a href=index.php?a=member&m=' . $user_id . '>' . $lastposter . '</a><br />' . format_datetime($lastpost_time, $user_timezone);
+        }
+      }
       $num_subforums = 0;
       if (isset($f_lookup_by_parent[$f_id])) {
         $subf_index = $f_lookup_by_parent[$f_id];
@@ -114,7 +121,7 @@ if ($showlastposts == 1) {
             $topic_link = $lang['new'] . ': ' . $topic_link;
 
       $started_by = $lang['started_by'] . ' <a href=index.php?a=member&m=' . $author_id . '>' . $author . '</a>';
-      $lastpost = $title . '<br /><a href=index.php?a=member&m=' . $lastposter_id . '>' . $lastposter . '</a><br /><span class="text-muted">' . format_datetime($lastposttime, $user_timezone) . '</span>';
+      $lastpost = '<a href=index.php?a=member&m=' . $lastposter_id . '>' . $lastposter . '</a><br /><span class="text-muted">' . format_datetime($lastposttime, $user_timezone) . '</span>';
       array_push($topics_html, eval ($template_topic));
       $cell_iterator = 1 - $cell_iterator;
     }

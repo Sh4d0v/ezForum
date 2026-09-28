@@ -26,7 +26,19 @@ function gen_forum_arrays(): void
   $totaltopics = 0;
   $totalreplies = 0;
 
-  $result = mysqli_query($mysqli, "SELECT * FROM {$dbpref}forums ORDER BY forum_parent, forum_order");
+  $result = mysqli_query(
+    $mysqli,
+    "SELECT f.*, lt.topic_id, lt.topic_title, lt.topic_numreplies
+     FROM {$dbpref}forums f
+     LEFT JOIN {$dbpref}topics lt ON lt.topic_id = (
+       SELECT t.topic_id
+       FROM {$dbpref}topics t
+       WHERE t.forum_id = f.forum_id
+       ORDER BY t.topic_lastpost_time DESC, t.topic_id DESC
+       LIMIT 1
+     )
+     ORDER BY f.forum_parent, f.forum_order"
+  );
   if (!$result) {
     return;
   }
