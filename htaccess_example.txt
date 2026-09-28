@@ -1,0 +1,6 @@
+RewriteEngine On
+RewriteBase /
+RewriteRule ^forum([0-9]+)\.htm$ ./index.php?a=vforum&f=$1
+RewriteRule ^forum([0-9]+)-([0-9]+)\.htm$ ./index.php?a=vforum&f=$1&p=$2
+RewriteRule ^article([0-9]+)\.htm$ ./index.php?a=vtopic&t=$1
+RewriteRule ^article([0-9]+)-([0-9]+)\.htm$ ./index.php?a=vtopic&t=$1&p=$2

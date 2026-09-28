@@ -1,0 +1,17 @@
+<form action="{$adminfile}?a=changeorder" method=post class=formstyle>
+    <table class=formtable>
+        <tr>
+            <td colspan=2 class=formtitle>&nbsp;&nbsp;<a href="{$forumhome}">{$forumtitle}</a> &raquo;
+                {$lang['change_forum_order']}</td>
+        </tr>
+        <tr>
+            <td class=formfield>{$lang['select_forum']}</td>
+            <td class=formcell0>{$forums_order}</td>
+        </tr>
+        <tr>
+            <td class=formfield>&nbsp;</td>
+            <td class=formcell1><input class=inputbutton type=submit name=changeorder
+                    value="{$lang['change_forum_order']}"></td>
+        </tr>
+    </table>
+</form>

@@ -1,0 +1,37 @@
+<table class="navtable">
+    <tr>
+        <td align="left">
+            <form action="{$forumscript}" method=post class=formstyle>
+                <input class="linkbutton" type="submit" name="submit" value="{$lang['forum']}">
+            </form>
+            <form action="{$forumscript}?a=search" method=post class=formstyle>
+                <input class=linkbutton type=submit name=submit value="{$lang['search']}">
+            </form>
+            <form action="{$forumscript}?a=register" method=post class=formstyle>
+                <input class=linkbutton type=submit name=submit value="{$lang['register']}">
+            </form>
+            <form action="{$forumscript}?a=forgotpass" method=post class=formstyle>
+                <input class=linkbutton type=submit name=submit value="{$lang['forgot_pass']}">
+            </form>
+        </td>
+        <td align="right">
+            <form action="{$forumscript}?a=forumjump" method="post" class="formstyle">
+                {$jumptoforum} <input class="inputbutton" type="submit" name="submit" value="{$lang['forum_jump']}">
+            </form>
+        </td>
+    </tr>
+</table>
+<table class="logtable warning">
+    <tr>
+        <td align="center">
+            <form action="{$forumscript}?a=login" method="post" class="formstyle">
+                <span class="formtext">{$lang['user_name']}:</span> <input class="inputtextbox" type="text"
+                    name="username" size=10 maxlength=30>
+                <span class="formtext">{$lang['user_pass']}:</span> <input class="inputtextbox" type="password"
+                    name="userpass" size=10>
+                <input type="checkbox" name="autolog" checked><span class="smalltext">{$lang['auto_log']}</span>
+                <input class="inputbutton" type="submit" name="submit" value="{$lang['login']}">
+            </form>
+        </td>
+    </tr>
+</table>

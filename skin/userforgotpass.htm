@@ -1,0 +1,19 @@
+{$errormessage}
+<form action="{$forumscript}?a=forgotpass" method=post class=formstyle>
+    <table class=formtable>
+        <tr>
+            <td colspan=2 class=formtitle>&nbsp;&nbsp;<a href="{$forumhome}">{$forumtitle}</a> &raquo;
+                {$lang['forgot_pass']}</td>
+        </tr>
+        <tr>
+            <td class=formfield>{$lang['user_name']}</td>
+            <td class=formcell0><input class=inputtextbox type=text name=username size=20 maxlength=30
+                    value="{$username}"></td>
+        </tr>
+        <tr>
+            <td class=formfield>&nbsp;</td>
+            <td class=formcell1><input type=hidden name=forgotpass><input class=inputbutton type=submit name=submit
+                    value="{$lang['send_new_pass']}"></td>
+        </tr>
+    </table>
+</form>

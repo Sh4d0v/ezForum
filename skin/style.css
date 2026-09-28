@@ -1,0 +1,572 @@
+.forum-header {
+    font-family: tahoma, verdana, arial;
+    display: table;
+    width: 100%;
+    border-spacing: 0px;
+    color: #fff;
+    background-color: #296fa5;
+    border: 1px #CCD7ED solid;
+    font-size: 2.0em;
+    font-weight: bold;
+}
+
+.success {
+    background: #e8f4e7;
+    border: 1px solid #6d9862;
+    padding: 10px;
+    margin: 10px 0px 10px 0px;
+}
+
+.warning {
+    background: #F4E7EA;
+    border: 1px solid #f9cacd;
+    padding: 10px;
+    margin: 10px 0px 10px 0px;
+}
+
+.warning a,
+.success a {
+    font-weight: bold;
+    color: #1f537b;
+}
+
+.smalltext {
+    font-size: 10px;
+    font-family: arial;
+}
+
+.forumpath {
+    border: 1px #CCD7ED solid;
+    font-size: 11px;
+    padding: 6px 6px 6px 15px;
+    color: #113c5e;
+    background-color: #e5ecf9;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-family: tahoma, verdana;
+}
+
+.forumpath a {
+    font-size: 11px;
+    font-weight: bold;
+    color: #296fa5;
+}
+
+.forumdesc {
+    color: #666;
+    line-height: 135%;
+    margin: 2px 0 0 0;
+    padding: 0;
+}
+
+.linkbutton {
+    overflow: visible;
+    border: 0px inset;
+    background-color: transparent;
+    font-family: tahoma, arial, verdana;
+    font-size: 11px;
+    font-weight: bold;
+    color: #1f537b;
+    text-decoration: none;
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+.linkbutton:hover {
+    text-decoration: underline;
+}
+
+.inputtextbox {
+    height: 20px;
+    background-color: #fff;
+    border: #000 1px solid;
+}
+
+.inputbutton {
+    height: 24px;
+    margin: 0px;
+    font-weight: bold;
+    font-family: verdana, tahoma, arial;
+    font-size: 11px;
+    padding-bottom: 1px;
+}
+
+.navtable {
+    font-family: tahoma, verdana, arial;
+    border: 1px #CCD7ED solid;
+    background-color: #e5ecf9;
+    display: table;
+    width: 100%;
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+
+.navtable td {
+    padding: 3px;
+}
+
+.logtable {
+    font-family: tahoma, verdana, arial;
+    font-size: 12px;
+    width: 100%;
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+
+.logtable td {
+    padding: 7px;
+}
+
+.formstyle {
+    font-family: tahoma, verdana, arial;
+    margin: 0px;
+    padding: 0px;
+    display: inline;
+}
+
+.formfield {
+    font-family: tahoma, verdana, arial;
+    font-size: 11px;
+    background-color: #e5ecf9;
+    border: #fff 1px solid;
+    text-align: right;
+    color: #000;
+    width: 20%;
+    font-weight: bold;
+}
+
+.formtext {
+    font-size: 0.9em;
+}
+
+.formcell0 {
+    font-family: tahoma, verdana, arial;
+    font-size: 12px;
+    background-color: #F5F7FB;
+    border: #fff 1px solid;
+    text-align: left;
+    color: #1f537b;
+}
+
+.formcell0 a {
+    font-family: tahoma, verdana, arial;
+    color: #36c;
+}
+
+.formcell1 {
+    font-family: tahoma, verdana, arial;
+    font-size: 12px;
+    background-color: #F5F7FB;
+    border: #fff 1px solid;
+    text-align: left;
+    color: #1f537b;
+}
+
+.formcell1 a {
+    font-family: tahoma, verdana, arial;
+    color: #36c;
+}
+
+.formtable {
+    font-family: tahoma, verdana, arial;
+    display: table;
+    width: 100%;
+    border-spacing: 0px;
+    border-collapse: collapse;
+    border: 1px #CCD7ED solid;
+}
+
+.formtable td {
+    font-family: tahoma, verdana, arial;
+    padding: 5px 10px 5px 10px;
+}
+
+.formtitle {
+    font-family: tahoma, verdana, arial;
+    border: 1px #fff solid;
+    background-color: #1f537b;
+    color: #fff;
+    padding: 4px;
+    font-size: 11px;
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+.formtitle a {
+    font-family: tahoma, verdana, arial;
+    color: #fff;
+}
+
+.error {
+    padding: 5px;
+    margin: 5px;
+    color: red;
+    background-color: #e5ecf9;
+    border: #eee 1px dashed;
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: arial;
+}
+
+.message {
+    padding: 20px;
+    margin: 5px;
+    color: #36c;
+    background-color: #e5ecf9;
+    border: #eee 1px dashed;
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: arial;
+}
+
+.message a {
+    text-decoration: underline;
+    font-family: arial, verdana, tahoma;
+    font-size: 12px;
+    color: #36c;
+}
+
+.forumtable {
+    font-family: tahoma, verdana, arial;
+    display: table;
+    width: 100%;
+    border: 1px #CCD7ED solid;
+}
+
+.forumtitle {
+    font-family: tahoma, tahoma, verdana, arial;
+    border: 1px #fff solid;
+    background-color: #1f537b;
+    color: #fff;
+    padding: 5px;
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.forumcell {
+    font-family: tahoma, verdana, arial;
+    padding: 5px 5px 5px 5px;
+    font-size: 11px;
+    border-left: 1px #fff solid;
+    border-top: 1px #fff solid;
+    border-bottom: 1px #eee solid;
+    border-right: 1px #eee solid;
+}
+
+.forumcat {
+    font-family: tahoma, verdana, arial;
+    border: 1px #fff solid;
+    padding: 5px 5px 5px 10px;
+    background-color: #e5ecf9;
+    font-size: 11px;
+    font-weight: normal;
+    color: #3366cc;
+}
+
+.forumcat a {
+    font-family: tahoma, verdana, arial;
+    font-weight: bold;
+    font-size: 12px;
+    color: #1a4aaa;
+    text-decoration: none;
+}
+
+.forumlink {
+    font-family: arial, tahoma, verdana, arial;
+    font-weight: bold;
+    font-size: 12px;
+    text-decoration: none;
+    color: #113c5e;
+}
+
+.forumrow0 {
+    background-color: #F5F7FB;
+}
+
+.forumrow1 {
+    background-color: #F5F7FB;
+}
+
+.pagination {
+    font-family: Verdana;
+    font-size: 11px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    color: #000;
+}
+
+.pagination a {
+    font-family: Verdana;
+    font-size: 11px;
+    text-decoration: underline;
+    color: #000;
+}
+
+.bbbuttons {
+    font-family: times new roman, arial, verdana;
+    border: 1px #fff solid;
+    background-color: #F5F7FB;
+}
+
+table td .bbbuttons {
+    padding: 10px;
+}
+
+.bbbuttons a {
+    font-family: times new roman, arial, verdana;
+    padding: 2px 5px 2px 5px;
+    font-size: 12px;
+    border: 1px #CCD7ED solid;
+    background-color: #e5ecf9;
+    color: #36c;
+    text-decoration: none;
+}
+
+.smiliesbar {
+    margin: 5px 5px 5px 0px;
+    font-family: arial, verdana;
+    border: 1px #fff solid;
+    background-color: #F5F7FB;
+}
+
+.smiliesbar a {
+    font-family: tahoma, verdana, arial;
+    margin: 2px;
+    padding-bottom: 5px;
+    font-weight: bold;
+    color: #36c;
+}
+
+.smiliestable {
+    display: table;
+    width: 100%;
+    border-spacing: 0px;
+    border-collapse: collapse;
+    border: 1px #CCD7ED solid;
+}
+
+.smiliecell {
+    padding: 5px 5px 5px 30px;
+    border: 1px #CCD7ED solid;
+    background-color: #F5F7FB;
+}
+
+.code {
+    border: 1px #000 solid;
+    background-color: #000;
+    color: #80FF80;
+    padding: 10px;
+    margin: 15px;
+    font-size: 11px;
+    font-family: 'courier new',monospace;
+}
+
+.quote {
+    border: 1px #000 solid;
+    background-color: #FEFEFE;
+    color: #000;
+    padding: 10px;
+    margin: 15px;
+    font-size: 11px;
+    font-family: verdana;
+}
+
+.subforums {
+    padding-left: 5px;
+    margin: 5px;
+}
+
+.subforums a {
+    font-size: 11px;
+}
+
+.topiclink {
+    font-size: 11px;
+    font-family: arial;
+    font-weight: bold;
+    text-decoration: underline;
+    color: #36c;
+}
+
+sup .topiclink {
+    font-family: arial, tahoma;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.topictable {
+    font-family: tahoma, verdana, arial;
+    display: table;
+    width: 100%;
+    border: 1px #CCD7ED solid;
+}
+
+.topictitle {
+    border: 1px #fff solid;
+    background-color: #1f537b;
+    color: #FFF;
+    padding: 5px;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    font-family: verdana;
+}
+
+.topiccell {
+    padding: 5px 5px 5px 5px;
+    border-left: 1px #fff solid;
+    border-top: 1px #fff solid;
+    border-bottom: 1px #eee solid;
+    border-right: 1px #eee solid;
+    font-size: 11px;
+}
+
+.topicrow0 {
+    background-color: #F5F7FB;
+}
+
+.topicrow1 {
+    background-color: #F5F7FB;
+}
+
+.topiccommands {
+    font-family: tahoma, verdana, arial;
+    font-size: 11px;
+    text-align: center;
+    background-color: #113c5e;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #fff;
+}
+
+.topiccommands a {
+    font-size: 11px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.posttable {
+    font-family: tahoma, verdana, arial;
+    display: table;
+    width: 100%;
+    border-spacing: 0px;
+    margin-bottom: 5px;
+    border: 1px #113c5e solid;
+}
+
+.posttitle {
+    background-color: #113c5e;
+    color: #fff;
+    padding: 4px;
+    font-size: 11px;
+}
+
+.posttitle a {
+    color: #fff;
+}
+
+.posttitle a:hover {
+    color: #e4e4e4;
+}
+
+.formtitle a:hover {
+    color: #e4e4e4;
+}
+
+.postauthor {
+    background-color: #e5ecf9;
+    padding: 2px 10px 2px 10px;
+    font-size: 11px;
+}
+
+.postrow0 {
+    background-color: #F5F7FB;
+}
+
+.postrow1 {
+    background-color: #F5F7FB;
+}
+
+.posttext {
+    padding: 10px;
+    font-size: 11px;
+    line-height: 18px;
+    background-color: #f1f6ff;
+}
+
+.memberbutton {
+    display: inline;
+    overflow: visible;
+    border: 0px inset;
+    background-color: transparent;
+    font-family: arial, verdana;
+    font-size: 14px;
+    font-weight: bold;
+    color: #c30;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0px;
+    margin: 0px;
+}
+
+.selectbox {
+    font-size: 12px;
+    font-family: arial;
+}
+
+.footer {
+    font-family: tahoma, verdana, arial;
+    font-size: 11px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.footer a {
+    font-size: 11px;
+    color: #0018a5;
+}
+
+.statstable {
+    background-color: #F5F7FB;
+    display: table;
+    width: 100%;
+    border: 1px #CCD7ED solid;
+}
+
+.statstitle {
+    font-family: tahoma, verdana, arial;
+    background-color: #1f537b;
+    color: #fff;
+    padding: 5px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.statscell {
+    font-family: tahoma, verdana, arial;
+    font-size: 11px;
+    background-color: #F5F7FB;
+    padding: 10px;
+}
+
+.text-decoration-underline {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+}
+
+.logged-in {
+  color: green;
+  font-size: 1.5em;
+}
+
+.logged-out {
+  color: red;
+  font-size: 1.5em;
+}

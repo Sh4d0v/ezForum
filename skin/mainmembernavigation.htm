@@ -1,0 +1,29 @@
+<table class="navtable">
+    <tr>
+        <td align="left">
+            <form action="{$forumscript}" method=post class=formstyle>
+                <input class="linkbutton" type="submit" name="submit" value="{$lang['forum']}">
+            </form>
+            <form action="{$forumscript}?a=search" method="post" class="formstyle">
+                <input class="linkbutton" type="submit" name="submit" value="{$lang['search']}">
+            </form>
+            {$admin_panel_link}
+        </td>
+        <td align="right">
+            <form action="{$forumscript}?a=forumjump" method="post" class=formstyle>
+                {$jumptoforum} <input class="inputbutton" type="submit" name="submit"
+                    value="{$lang['forum_jump']}"></form>
+        </td>
+    </tr>
+</table>
+<table class="logtable success">
+    <tr>
+        <td align="left">
+            <span>{$lang['welcome']} <b>{$user_name}</b>!</span>
+            <span>( <a href="{$forumscript}?a=logout">{$lang['logout']}</a> )</span>
+        </td>
+        <td align="right">
+            <span><a href="{$forumscript}?a=usercp">{$lang['user_options']}</a></span>
+        </td>
+    </tr>
+</table>

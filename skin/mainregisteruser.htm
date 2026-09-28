@@ -1,0 +1,32 @@
+{$errormessage}
+<form action="{$forumscript}?a=register" method=post class=formstyle>
+    <table class=formtable>
+        <tr>
+            <td colspan=2 class=formtitle>&nbsp;&nbsp;<a href="{$forumhome}">{$forumtitle}</a> &raquo;
+                {$lang['new_user_reg']}</td>
+        </tr>
+        <tr>
+            <td class=formfield>{$lang['desired_user']}</td>
+            <td class=formcell0><input class=inputtextbox type=text name=username size=20 maxlength=20
+                    value="{$username}"></td>
+        </tr>
+        <tr>
+            <td class=formfield>{$lang['user_pass']}</td>
+            <td class=formcell1><input class=inputtextbox type=password name=pass size=21 maxlength=30></td>
+        </tr>
+        <tr>
+            <td class=formfield>{$lang['pass_again']}</td>
+            <td class=formcell0><input class=inputtextbox type=password name=passagain size=21 maxlength=30></td>
+        </tr>
+        <tr>
+            <td class=formfield>{$lang['email']}</td>
+            <td class=formcell1><input class=inputtextbox type=text name=useremail size=20 maxlength=100
+                    value="{$useremail}"></td>
+        </tr>
+
+        <tr>
+            <td class=formfield>&nbsp;</td>
+            <td class=formcell0><input class=inputbutton type=submit name=register value="{$lang['register']}"></td>
+        </tr>
+    </table>
+</form>

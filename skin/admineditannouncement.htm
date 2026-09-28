@@ -1,0 +1,25 @@
+<form action="{$adminfile}?a=announcement" method="post" class="formstyle">
+    <table class="formtable">
+        <tr>
+            <td colspan="2" class="formtitle">
+                <a href="{$forumhome}">{$forumtitle}</a> &raquo;
+                {$lang['announcement']}
+            </td>
+        </tr>
+        <tr>
+            <td class="formfield align-top">
+                <div>{$lang['announcement']}</div>
+                <div class="text-muted font-italic">{$lang['announcement_hint']}</div>
+            </td>
+            <td class="formcell0">
+                <textarea name="forumannouncement" rows="8" cols="60">{$announcement_text}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td class="formfield">&nbsp;</td>
+            <td class="formcell1">
+                <input class="inputbutton" type="submit" name="announcement" value="{$lang['save']}">
+            </td>
+        </tr>
+    </table>
+</form>

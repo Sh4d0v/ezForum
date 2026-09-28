@@ -1,0 +1,59 @@
+<table class=formtable>
+    <tr>
+        <td colspan=2 class=formtitle>&nbsp;&nbsp;<a href="{$forumhome}">{$forumtitle}</a> &raquo;
+            {$lang['admin_panel']}</td>
+    </tr>
+    <tr>
+        <td class=formfield>
+            {$lang['admin_general_info']}
+        </td>
+        <td class=formcell0>
+            {$lang['admin_forum_version']}: <a href="{$adminfile}?a=check_version" class="text-primary text-decoration-underline">{$version}</a><br />
+            {$lang['php_version']}: {$php_version} <span class="text-primary text-decoration-underline" data-toggle="tooltip" title="PHP Extensions: {$php_extensions}">{$lang['available_extensions']}</span><br />
+            {$lang['mysql_version']}: <span class="text-primary">{$mysql_version}</span><br />
+            {$lang['server_os']}: <span class="text-primary">{$server_os}</span><br />
+            {$lang['server_software']}: <span class="text-primary">{$server_software}</span><br />
+        </td>
+    </tr>
+    <tr>
+        <td class=formfield>
+            {$lang['admin_forum_general']}
+        </td>
+        <td class=formcell0>
+            <a href="{$adminfile}?a=phpinfo">{$lang['admin_phpinfo']}</a><br />
+            <a href="{$adminfile}?a=check_version">{$lang['admin_update_forum']}</a><br />
+            <a href="{$adminfile}?a=announcement">{$lang['edit_announcement']}</a>
+        </td>
+    </tr>
+    <tr>
+        <td class=formfield>
+            {$lang['forums']}
+        </td>
+        <td class=formcell0>
+            <a href="{$adminfile}?a=addforum">{$lang['add_forum']}</a><br />
+            <a href="{$adminfile}?a=editforum">{$lang['edit_forum']}</a><br />
+            <a href="{$adminfile}?a=delforum">{$lang['delete_forum']}</a><br />
+            <a href="{$adminfile}?a=changeorder">{$lang['change_forum_order']}</a><br />
+            <a href="{$adminfile}?a=recountforums">{$lang['recount_forum_stats']}</a>
+        </td>
+    </tr>
+    <tr>
+        <td class=formfield>
+            {$lang['users']}
+        </td>
+        <td class=formcell1>
+            <a href="{$adminfile}?a=deluser">{$lang['del_user']}</a><br />
+            <a href="{$adminfile}?a=banuser">{$lang['ban_user']}</a><br />
+            <a href="{$adminfile}?a=unbanuser">{$lang['unban_user']}</a><br />
+            <a href="{$adminfile}?a=recountusers">{$lang['recount_user_stats']}</a>
+        </td>
+    </tr>
+    <tr>
+        <td class=formfield>
+            {$lang['database']}
+        </td>
+        <td class=formcell0>
+            <a href="{$adminfile}?a=optimize">{$lang['optimize']}</a><br />
+        </td>
+    </tr>
+</table>

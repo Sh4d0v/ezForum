@@ -1,0 +1,79 @@
+{$errormessage}
+<form action="{$forumscript}?a=search" method="post" name="SForm" class="formstyle">
+    <div class="card mb-4">
+        <div class="formtitle">
+            <a href="{$forumhome}">{$forumtitle}</a> &raquo; {$lang['search']}
+        </div>
+        <div class="card-body">
+
+            <!-- Search for -->
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label text-right">
+                    {$lang['search_for']}
+                </label>
+                <div class="col-md-9">
+                    <input type="text" name="s" class="form-control" maxlength="100">
+                </div>
+            </div>
+
+            <!-- Forums -->
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label text-right">
+                    {$lang['search_forums']}
+                </label>
+                <div class="col-md-9">
+                    {$searchforums}
+                </div>
+            </div>
+
+            <!-- Posts by -->
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label text-right">
+                    {$lang['search_options']}
+                </label>
+                <div class="col-md-9">
+
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" name="postsby" value="1" id="postsby">
+                        <label class="form-check-label" for="postsby">
+                            {$lang['posts_by']}
+                        </label>
+
+                        <input type="text" name="postauthor" class="form-control form-control-sm mt-2" maxlength="30">
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="postsage" value="1" id="postsage">
+                        <label class="form-check-label" for="postsage">
+                            {$lang['post_age']}
+                        </label>
+
+                        <div class="form-inline mt-2">
+                            <select name="timeselect" class="form-control form-control-sm mr-2">
+                                <option value="0" selected>{$lang['newer']}</option>
+                                <option value="1">{$lang['older']}</option>
+                            </select>
+
+                            {$lang['than']}
+
+                            <input type="text" name="sdays" class="form-control form-control-sm mx-2"
+                                style="width:80px;">
+
+                            {$lang['days_ago']}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <div class="form-group row">
+                <div class="col-md-9 offset-md-3">
+                    <button type="submit" name="search" class="btn btn-primary btn-sm">
+                        {$lang['search']}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,18 @@
+{$errormessage}
+<form action="{$forumscript}?a=edittopic&amp;t={$t}" method=post name=eform>
+    <table class=formtable>
+        <tr>
+            <td colspan=2 class=formtitle>&nbsp;&nbsp;<a href="{$forumhome}">{$forumtitle}</a> &raquo;
+                {$lang['edit_topic']}</td>
+        </tr>
+        <tr>
+            <td class=formfield>{$lang['topic_title']}:</td>
+            <td class=formcell0><input class=inputtextbox name=newtitle type=text size=40 maxlength=100
+                    value="{$topic_title}"></td>
+        </tr>
+        <tr>
+            <td class=formfield>&nbsp;</td>
+            <td class=formcell1><input class=inputbutton type=submit name=submit value="{$lang['edit_topic']}"></td>
+            </td>
+    </table>
+</form>

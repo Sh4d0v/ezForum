@@ -1,0 +1,126 @@
+{$errormessage}
+<form action="{$forumscript}?a=usercp" enctype="multipart/form-data" method=post name=PForm class=formstyle>
+    <table class=formtable>
+        <tr>
+            <td colspan=2 class=formtitle>&nbsp;&nbsp;<a href="{$forumhome}">{$forumtitle}</a> &raquo;
+                {$lang['user_options']}</td>
+        </tr>
+        <tr>
+            <td class=formfield>{$lang['user_name']}</td>
+            <td class=formcell0><input class=inputtextbox type=text name=username size=20 maxlength=30
+                    value="{$username}" disabled></td>
+        </tr>
+        <tr>
+            <td class=formfield>{$lang['email']}</td>
+            <td class=formcell1><input class=inputtextbox type=text name=useremail size=20 maxlength=100
+                    value="{$useremail}"></td>
+        </tr>
+        <tr>
+            <td class=formfield>{$lang['change_password']}</td>
+            <td class=formcell0><input class=inputtextbox type=password name=newpass size=20 maxlength=30
+                    value="">&nbsp;{$lang['change_pass_hint']}</td>
+        </tr>
+        <tr>
+            <td class=formfield>{$lang['pass_again']}</td>
+            <td class=formcell1><input class=inputtextbox type=password name=newpassconfirm size=20 maxlength=30
+                    value=""></td>
+        </tr>
+        <tr>
+            <td class=formfield>{$lang['language']}</td>
+            <td class=formcell0><!-- {$htmllanguages} --></td>
+        </tr>
+        <tr>
+            <td class=formfield>{$lang['timezone']}</td>
+            <td class=formcell0>{$htmlzones}</td>
+        </tr>
+        <tr>
+            <td class=formfield>{$lang['privacy']}</td>
+            <td class=formcell1>
+                <input type=checkbox name=emailpublic value=1 {$emailpublic_check}>{$lang['email_public']}<br>
+                <input type=checkbox name=viewonline value=1 {$viewonline_check}>{$lang['view_online']}
+            </td>
+        </tr>
+
+        <tr style="visibility:{$v_signatures_and_avatars}">
+            <td class=formfield>{$lang['visual_options']}</td>
+            <td class=formcell0>
+                <input type=checkbox name=viewsignatures value=1 {$viewsignatures_check}>{$lang['view_signatures']}<br>
+                <input type=checkbox name=viewavatars value=1 {$viewavatars_check}>{$lang['view_avatars']}
+            </td>
+        </tr>
+
+        <tr style="visibility:{$v_signatures_and_avatars}">
+            <td class=formfield rowspan=3>{$lang['user_signature']}</td>
+            <td class=smiliesbar>
+                {$sig_smiliesbar}
+            </td>
+        </tr>
+
+        <tr style="visibility:{$v_signatures_and_avatars}">
+            <td class=bbbuttons>
+                <a href="javascript:paste_string(document.PForm.usersignature,'[b][/b]')"><b>{$lang['bold']}</b></a>&nbsp;
+                <a href="javascript:paste_string(document.PForm.usersignature,'[i][/i]')"><i>{$lang['italics']}</i></a>&nbsp;
+                <a href="javascript:paste_string(document.PForm.usersignature,'[u][/u]')"><u>{$lang['underline']}</u></a>&nbsp;
+                <a href="javascript:paste_url(document.PForm.usersignature,'{$lang['enter_url']}','{$lang['enter_desc']}')">{$lang['url']}</a>&nbsp;
+                <a href="javascript:paste_email(document.PForm.usersignature,'{$lang['enter_email']}','{$lang['enter_desc']}')">{$lang['email']}</a>&nbsp;
+                <a href="javascript:paste_image(document.PForm.usersignature,'{$lang['enter_image']}')">{$lang['image']}</a>&nbsp;
+                <a href="javascript:paste_string(document.PForm.usersignature,'[quote][/quote]')">{$lang['quote']}</a>&nbsp;
+                <a href="javascript:paste_string(document.PForm.usersignature,'[code][/code]')">{$lang['code']}</a>
+            </td>
+        </tr>
+
+        <tr style="visibility:{$v_signatures_and_avatars}">
+            <td class=formcell1>
+                <textarea name=usersignature cols=40 rows=5 style="width:450px;">{$usersignature}</textarea><br>
+                <input type=checkbox name=sig_bbcodes value=1 {$sig_bbcodes_check}>{$lang['enable_bbcodes']}<br>
+                <input type=checkbox name=sig_emoticons value=1 {$sig_emoticons_check}>{$lang['enable_emoticons']}<br>
+                <input type=checkbox name=sig_makeurls value=1 {$sig_makeurls_check}>{$lang['enable_makeurls']}
+            </td>
+        </tr>
+
+        <tr style="visibility:{$v_signatures_and_avatars}">
+            <td class=formfield>{$lang['user_avatar']}</td>
+            <td class=formcell0>
+                {$current_avatar}
+                <input type="hidden" name="MAX_FILE_SIZE" value="{$maxavatarsize}">
+                {$lang['avatar_upload']} <input name="useravatarfile" type="file"><br>
+                <i>{$lang['avatar_hint']}</i>
+            </td>
+        </tr>
+
+        <tr>
+            <td class=formfield rowspan=4>{$lang['user_bio']}</td>
+            <td class=formcell1>{$lang['user_bio_hint']}</td>
+        </tr>
+        <tr>
+            <td class=smiliesbar>
+                {$smiliesbar}
+            </td>
+        </tr>
+        <tr>
+            <td class=bbbuttons>
+                <a href="javascript:paste_string(document.PForm.userbio,'[b][/b]')"><b>{$lang['bold']}</b></a>&nbsp;
+                <a href="javascript:paste_string(document.PForm.userbio,'[i][/i]')"><i>{$lang['italics']}</i></a>&nbsp;
+                <a href="javascript:paste_string(document.PForm.userbio,'[u][/u]')"><u>{$lang['underline']}</u></a>&nbsp;
+                <a href="javascript:paste_url(document.PForm.userbio,'{$lang['enter_url']}','{$lang['enter_desc']}')">{$lang['url']}</a>&nbsp;
+                <a href="javascript:paste_email(document.PForm.userbio,'{$lang['enter_email']}','{$lang['enter_desc']}')">{$lang['email']}</a>&nbsp;
+                <a href="javascript:paste_image(document.PForm.userbio,'{$lang['enter_image']}')">{$lang['image']}</a>&nbsp;
+                <a href="javascript:paste_string(document.PForm.userbio,'[quote][/quote]')">{$lang['quote']}</a>&nbsp;
+                <a href="javascript:paste_string(document.PForm.userbio,'[code][/code]')">{$lang['code']}</a>
+            </td>
+        </tr>
+        <tr>
+            <td class=formcell0>
+                <textarea name=userbio cols=40 rows=5 style="width:450px;">{$userbio}</textarea><br>
+                <input type=checkbox name=bbcodes value=1 {$bbcodes_check}>{$lang['enable_bbcodes']}<br>
+                <input type=checkbox name=emoticons value=1 {$emoticons_check}>{$lang['enable_emoticons']}<br>
+                <input type=checkbox name=makeurls value=1 {$makeurls_check}>{$lang['enable_makeurls']}
+            </td>
+        </tr>
+
+        <tr>
+            <td class=formfield>&nbsp;</td>
+            <td class=formcell1><input class=inputbutton type=submit name=usercp value="{$lang['save']}"></td>
+        </tr>
+    </table>
+</form>

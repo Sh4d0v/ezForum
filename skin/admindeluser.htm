@@ -1,0 +1,17 @@
+<form action="{$adminfile}?a=deluser" method=post class=formstyle>
+    <table class=formtable>
+        <tr>
+            <td class=formtitle colspan=2>&nbsp;&nbsp;<a href="{$forumhome}">{$forumtitle}</a> &raquo;
+                {$lang['del_user']}</td>
+        </tr>
+        <tr>
+            <td class=formfield>{$lang['user_name']}</td>
+            <td class=formcell0><input class=inputtextbox type=text name=delusername size=40 value="{$delusername}">
+            </td>
+        </tr>
+        <tr>
+            <td class=formfield>&nbsp;</td>
+            <td class=formcell1><input class=inputbutton type=submit name=deluser value="{$lang['del_user']}"></td>
+        </tr>
+    </table>
+</form>

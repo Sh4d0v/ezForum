@@ -1,0 +1,30 @@
+<form action="{$adminfile}?a=editforum&amp;id={$id}" method="post" class="formstyle">
+    <table class="formtable">
+        <tr>
+            <td colspan="2" class="formtitle">
+                <a href="{$forumhome}">{$forumtitle}</a> &raquo; {$lang['edit_forum']}
+            </td>
+        </tr>
+        <tr>
+            <td class="formfield">{$lang['parent_cat']}</td>
+            <td class="formcell0">{$parentselect}</td>
+        </tr>
+        <tr>
+            <td class="formfield">{$lang['forum_name']}</td>
+            <td class="formcell1"><input class="inputtextbox" type="text" name="forumname" size="60" value="{$forumname}"></td>
+        </tr>
+        <tr>
+            <td class="formfield align-top">
+                <div>{$lang['forum_desc']}</div>
+                <div class="text-muted font-italic">{$lang['announcement_hint']}</div>
+            </td>
+            <td class="formcell0"><textarea name="forumdesc" rows="8" cols="60">{$forumdesc}</textarea></td>
+        </tr>
+        <tr>
+            <td class="formfield">&nbsp;</td>
+            <td class="formcell1">
+                <input class="inputbutton" type="submit" name="editforum" value="{$lang['edit_forum']}">
+            </td>
+        </tr>
+    </table>
+</form>

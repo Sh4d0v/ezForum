@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{$forumtitle} - $title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="skin/style.css" rel="stylesheet" type="text/css" />
+    <link href="skin/lib/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0 Feed" href="{$forumdir}index.rss.php" />
+    <link rel="alternate" type="application/atom+xml" title="Atom 1.0 Feed" href="{$forumdir}index.atom.php" />
+</head>
+
+<body class="m-3">
+    <script src="javascript/ezforum.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+    <div class="w-100 p-0 m-0 forum-header">
+        <div class="row">
+            <div class="col">
+                <img src="/images/logo.png" alt="{$forumtitle}" class="img-fluid">
+            </div>
+        </div>
+    </div>
+    {$navigation}
+
+    {$announcement_text}
+
+    {$forum_path}
