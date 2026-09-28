@@ -2,7 +2,7 @@
 require_once __DIR__ . '/ez_options.php';
 require_once __DIR__ . '/code/functions.php';
 require_once __DIR__ . '/lang/' . $lang . '.php';
-require_once __DIR__ . '/smilies/smilies.php';
+require_once __DIR__ . '/images/smilies/smilies.php';
 ?>
 <html>
 

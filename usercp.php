@@ -10,7 +10,7 @@
  * Contact: contact@plagues.pl
  *----------------------------------------------------------------------
  */
-require('smilies/smilies.php');
+require('images/smilies/smilies.php');
 
 if (!defined('EZFORUM')) {
   die($lang['fatal_error']);

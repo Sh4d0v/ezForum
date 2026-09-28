@@ -13,7 +13,7 @@
 if (!defined('EZFORUM'))
   die($lang['fatal_error']);
 
-require_once __DIR__ . '/smilies/smilies.php';
+require_once __DIR__ . '/images/smilies/smilies.php';
 
 if (!isset($p) || !is_numeric($p))
   die($lang['fatal_error']);
