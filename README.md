@@ -1,5 +1,7 @@
 # ezForum
-ezForum is a simple forum script based on the discontinued `SEO-Board 1.1.0`, which was abandoned around the turn of 2012 and 2013.
+<img src="https://i.ibb.co/0VKTqDXx/ezforum.png" alt="ezforum" border="0" width="300">
+
+**ezForum** is a simple forum script based on the discontinued `SEO-Board 1.1.0`, which was abandoned around the turn of 2012 and 2013.
 This script is being developed for my own use and as a form of practice.
 
 * [Webarchive: seo-board.com](https://web.archive.org/web/20131123042959/http://www.seo-board.com/)
