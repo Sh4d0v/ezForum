@@ -130,8 +130,13 @@ if (isset($_POST["postreply"])) {
       $user_ip = null;
       $edited_by = null;
       $post_actions = null;
-      $avatar_style = null;
-      $author_avatar = null;
+      if (isset($user_avatar[0]) && $signaturesandavatars && $user_view_avatars) {
+        $author_avatar = '<img src="' . $user_avatar . '" border=0 />';
+        $avatar_style = 'padding: 5px 0px 5px 5px;';
+      } else {
+        $author_avatar = null;
+        $avatar_style = null;
+      }
 
       $posts_html = eval (get_template('mainpostcell'));
       $topic_commands = null;
