@@ -150,7 +150,7 @@ if (isset($_COOKIE[$cookiename])) {
   if (!is_numeric($user_id))
     die($lang['fatal_error']);
 
-  $result = mysqli_query($mysqli, "SELECT user_name, user_timezone, user_numposts, user_regdate, user_allowviewonline, user_lasttimereadpost, user_lastsession, user_banned, user_view_signatures, user_view_avatars FROM {$dbpref}users WHERE user_id='$user_id' AND user_pass='$user_pass_sha1'");
+  $result = mysqli_query($mysqli, "SELECT user_name, user_timezone, user_numposts, user_gold, user_regdate, user_allowviewonline, user_lasttimereadpost, user_lastsession, user_banned, user_view_signatures, user_view_avatars FROM {$dbpref}users WHERE user_id='$user_id' AND user_pass='$user_pass_sha1'");
   if (mysqli_num_rows($result) != 1) {
     setcookie($cookiename, '', time() - 10000, $cookiepath, $cookiedomain, $cookiesecure);
     if (isset($_SERVER["HTTP_REFERER"]))
@@ -160,7 +160,7 @@ if (isset($_COOKIE[$cookiename])) {
     exit;
   } else {
     $user_row = mysqli_fetch_row($result);
-    list($user_name, $user_timezone, $user_numposts, $user_regdate, $user_allowviewonline, $user_last_time_read_post, $user_lastsession, $user_banned, $user_view_signatures, $user_view_avatars) = $user_row;
+    list($user_name, $user_timezone, $user_numposts, $user_gold, $user_regdate, $user_allowviewonline, $user_last_time_read_post, $user_lastsession, $user_banned, $user_view_signatures, $user_view_avatars) = $user_row;
     if ($user_banned == 1)
       die($lang['banned']);
     $now = time();

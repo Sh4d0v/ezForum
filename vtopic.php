@@ -112,10 +112,12 @@ if (isset($_POST["postreply"])) {
         $posted_by = '<span class=memberbutton style="text-decoration: none; cursor: default;">' . $user_name . '</span>';
         $author_num_posts = null;
         $author_reg_date = null;
+        $author_gold = null;
         $author_online = null;
       } else {
         $posted_by = get_member_link($user_id, $user_name);
         $author_num_posts = $lang['posts'] . ': ' . ($user_numposts + 1);
+        $author_gold = $lang['gold'] . ': ' . $user_gold . '🪙';
         $author_reg_date = $lang['joined'] . ': ' . format_shortdate($user_regdate);
         if ($user_allowviewonline == 0)
           $author_online = null;
@@ -204,6 +206,7 @@ if (!isset($_POST["postreply"]) || isset($preview)) {
       $posted_by = '<span class="memberbutton" style="text-decoration: none; cursor: default;"><a href=index.php?a=member&m=' . $author_id . '>' . $author_name . '</a></span>';
       $author_num_posts = null;
       $author_reg_date = null;
+      $author_gold = null;
       $author_online = null;
     } else {
       $posted_by = get_member_link($author_id, $author_name);
