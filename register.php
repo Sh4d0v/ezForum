@@ -65,7 +65,7 @@ if (isset($_POST['register'])) {
                           VALUES ('$username', '" . sha1($shaprefix . $pass) . "','$useremail','$now','$now','$now', '$forumtimezone')");
 
     if ($registermode == 0) {
-      require('./emails/welcome_email.php');
+      require('./code/emails/welcome_email.php');
       require('./code/mailer.php');
       send_email($email_subject, $email_body, $useremail, $adminemail, $adminemail);
       $message = $lang['user_added_pass_sent'];

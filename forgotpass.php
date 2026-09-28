@@ -32,7 +32,7 @@ if (isset($_POST['forgotpass'])) {//change pass/send email
     $newpasssha1 = sha1($shaprefix . $newpass);
     mysqli_query($mysqli, "UPDATE {$dbpref}users SET user_newpassword='$newpasssha1' WHERE user_id='$uid'");
     $changepasslink = $forumscript . '?a=forgotpass&id=' . $uid . '&newpass=' . $newpass;
-    require('./emails/sendnewpass_email.php');
+    require('./code/emails/sendnewpass_email.php');
     require('./code/mailer.php');
     send_email($email_subject, $email_body, $useremail, $adminemail, $adminemail);
     $message = $lang['new_email_sent'];
