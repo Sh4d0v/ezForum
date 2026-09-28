@@ -198,6 +198,13 @@ $lang = array(
     'underline' => 'U',
     'stroke' => 'S',
     'kbd' => 'KBD',
+    'bbcode_youtube' => 'YouTube',
+    'bbcode_list' => 'List',
+    'bbcode_center' => 'Center',
+    'bbcode_size' => 'Size',
+    'bbcode_list_item' => 'List item',
+    'bbcode_size_prompt' => 'Choose text size (10, 12, 14, or 16):',
+    'bbcode_invalid_size' => 'Invalid size. Choose 10, 12, 14, or 16.',
     'url' => 'URL',
     'image' => 'Image',
     'enter_url' => 'Enter URL:',
@@ -324,5 +331,4 @@ $timezones = array(
     '12' => '[GMT+12:00] Auckland, Fiji'
 );
 
-//$months = array('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec');
-?>
+$months = array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec');

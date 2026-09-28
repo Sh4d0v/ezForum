@@ -46,6 +46,29 @@ function paste_string(e, s) {
   e.focus();
 }
 
+function paste_list(e, itemLabel) {
+  var snippet = '[list]\n[*]' + itemLabel + '\n[/list]';
+  var startPos = (typeof e.selectionStart === 'number') ? e.selectionStart : e.value.length;
+  paste_string(e, snippet);
+
+  if (typeof e.setSelectionRange === 'function') {
+    var itemStart = startPos + snippet.indexOf(itemLabel);
+    e.setSelectionRange(itemStart, itemStart + itemLabel.length);
+  }
+  e.focus();
+}
+
+function paste_size(e, promptText, invalidText) {
+  var size = prompt(promptText, '10');
+  if (size === null) return;
+  size = size.replace(/^\s+|\s+$/g, '');
+  if (!/^(10|12|14|16)$/.test(size)) {
+    alert(invalidText);
+    return;
+  }
+  paste_string(e, '[size=' + size + '][/size]');
+}
+
 function paste_url(e, p1, p2) {
   var u = prompt(p1, '');
   if (u === null) return; // cancelled

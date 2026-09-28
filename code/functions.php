@@ -122,6 +122,42 @@ function format_bbcodes(string $text): string
   $replace = ['<strong>', '</strong>', '<em>', '</em>', '<u>', '</u>'];
   $text = str_ireplace($search, $replace, $text);
 
+  // [YOUTUBE]...[/YOUTUBE]
+  $text = preg_replace_callback(
+    '#\[youtube\](.*?)\[/youtube\]#is',
+    function ($m) {
+      $url = trim(html_entity_decode($m[1], ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+      $video_id = null;
+
+      if (preg_match('/^[A-Za-z0-9_-]{11}$/', $url)) {
+        $video_id = $url;
+      } else {
+        $scheme = strtolower((string) parse_url($url, PHP_URL_SCHEME));
+        $host = strtolower((string) parse_url($url, PHP_URL_HOST));
+        $path = (string) parse_url($url, PHP_URL_PATH);
+        $query = [];
+        parse_str((string) parse_url($url, PHP_URL_QUERY), $query);
+        $youtube_hosts = ['youtube.com', 'www.youtube.com', 'm.youtube.com'];
+
+        if (!in_array($scheme, ['http', 'https'], true))
+          return $m[0];
+
+        if (in_array($host, $youtube_hosts, true) && ($path === '/watch') && isset($query['v']))
+          $video_id = $query['v'];
+        elseif (in_array($host, $youtube_hosts, true) && preg_match('#^/(?:embed|shorts|live)/([A-Za-z0-9_-]{11})/?$#', $path, $matches))
+          $video_id = $matches[1];
+        elseif (($host === 'youtu.be') && preg_match('#^/([A-Za-z0-9_-]{11})/?$#', $path, $matches))
+          $video_id = $matches[1];
+      }
+
+      if (!is_string($video_id) || !preg_match('/^[A-Za-z0-9_-]{11}$/', $video_id))
+        return $m[0];
+
+      return '<div class="embed-responsive embed-responsive-16by9 my-3"><iframe class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/' . $video_id . '?rel=0" title="YouTube video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>';
+    },
+    $text
+  );
+
   // [img]...[/img]
   $text = preg_replace_callback(
     '#\[img\](https?://[^\s\'"]+)\[/img\]#i',
@@ -208,6 +244,46 @@ function format_bbcodes(string $text): string
     function ($m) {
       $s = htmlspecialchars($m[1], ENT_QUOTES, 'UTF-8');
       return '<s>' . $s . '</s>';
+    },
+    $text
+  );
+
+  // [CENTER]...[/CENTER]
+  $text = preg_replace_callback(
+    '#\[center\](.*?)\[/center\]#is',
+    function ($m) {
+      return '<div class="text-center">' . $m[1] . '</div>';
+    },
+    $text
+  );
+
+  // [SIZE=10|12|14|16]...[/SIZE]
+  $text = preg_replace_callback(
+    '#\[size=(10|12|14|16)\](.*?)\[/size\]#is',
+    function ($m) {
+      $sizes = ['10' => '1rem', '12' => '1.2rem', '14' => '1.4rem', '16' => '1.6rem'];
+      return '<span style="font-size: ' . $sizes[$m[1]] . ';">' . $m[2] . '</span>';
+    },
+    $text
+  );
+
+  // [LIST][*]item[*]item[/LIST]
+  $text = preg_replace_callback(
+    '#\[list\](.*?)\[/list\]#is',
+    function ($m) {
+      $items = preg_split('#\[\*\]#i', trim($m[1]));
+      $items = array_filter(array_map('trim', $items), function ($item) {
+        return $item !== '';
+      });
+
+      if (count($items) === 0)
+        return '';
+
+      $list_items = array_map(function ($item) {
+        return '<li>' . $item . '</li>';
+      }, $items);
+
+      return '<ul class="pl-4">' . implode('', $list_items) . '</ul>';
     },
     $text
   );
@@ -421,8 +497,8 @@ function validate_text($text, $checkbbcodes = true)
     return null;
 
   $stack = [];
-  $tags1 = array('b', '/b', 'i', '/i', 'u', '/u', 'url', '/url', 'email', '/email', 'img', '/img', 'code', '/code', 'quote', '/quote');
-  $tags2 = array('url', '/url', 'email', '/email', 'quote', '/quote');
+  $tags1 = array('b', '/b', 'i', '/i', 'u', '/u', 'url', '/url', 'email', '/email', 'img', '/img', 'code', '/code', 'quote', '/quote', 'youtube', '/youtube', 'list', '/list', 'center', '/center', 'size', '/size');
+  $tags2 = array('url', '/url', 'email', '/email', 'quote', '/quote', 'size');
   $ex = explode('[', $text);
   $excount = count($ex);
   if ($excount == 1)
@@ -433,6 +509,8 @@ function validate_text($text, $checkbbcodes = true)
       continue;
     $temp_arr2 = explode('=', $temp_arr[0]);
     $tag = strtolower($temp_arr2[0]);
+    if (($tag === 'size') && ((count($temp_arr2) !== 2) || !in_array($temp_arr2[1], ['10', '12', '14', '16'], true)))
+      return get_error($lang['bbcode_invalid_size']);
     // Validate tags without '='
     if ((count($temp_arr2) == 1) && (!in_array($tag, $tags1)))
       continue;
