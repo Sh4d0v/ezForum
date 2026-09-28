@@ -33,7 +33,7 @@ This script is being developed for my own use and as a form of practice.
 1. Create a MySQL database. Use the web based MySQL admin provided by your hosting provider.
 Or use the plain SQL command: create database DatabaseName;
 2. Unzip the ezForum zip file and upload all files and subdirectories.
-3. Set up all options in the file `seo-board_options.php`. 
+3. Set up all options in the file `ez_options.php`. 
 4. Run the installation script from your browser (install.php). Example: https://www.yoursite.com/forum/install.php
 If you have set all user/password fields above correctly, you should get *Forum Installed Successfully!* message. If something is not configured, you'll get the specific MySQL error.
 5. Delete `install.php` from your site! If you don't someone can run it.
