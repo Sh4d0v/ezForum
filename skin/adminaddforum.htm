@@ -1,24 +1,11 @@
-<form action="{$adminfile}?a=addforum" method=post class=formstyle>
-    <table class=formtable>
-        <tr>
-            <td colspan=2 class=formtitle>&nbsp;&nbsp;<a href="{$forumhome}">{$forumtitle}</a> &raquo;
-                {$lang['add_forum']}</td>
-        </tr>
-        <tr>
-            <td class=formfield>{$lang['parent_cat']}</td>
-            <td class=formcell0>{$parentselect}</td>
-        </tr>
-        <tr>
-            <td class=formfield>{$lang['forum_name']}</td>
-            <td class=formcell1><input class=inputtextbox type=text name=forumname size=60 value="{$forumname}"></td>
-        </tr>
-        <tr>
-            <td class=formfield>{$lang['forum_desc']}</td>
-            <td class=formcell0><textarea name=forumdesc rows=8 cols=60>{$forumdesc}</textarea></td>
-        </tr>
-        <tr>
-            <td class=formfield>&nbsp;</td>
-            <td class=formcell1><input class=inputbutton type=submit name=addforum value="{$lang['add_forum']}"></td>
-        </tr>
-    </table>
-</form>
+<div class="card forum-form-card mb-4">
+    <div class="forum-head-bar"><a href="{$forumhome}">{$forumtitle}</a> <span class="text-muted mx-1">/</span> {$lang['add_forum']}</div>
+    <div class="card-body">
+        <form action="{$adminfile}?a=addforum" method="post" class="formstyle">
+            <div class="form-group"><label for="parent-forum">{$lang['parent_cat']}</label><div id="parent-forum">{$parentselect}</div></div>
+            <div class="form-group"><label for="forum-name">{$lang['forum_name']}</label><input class="form-control" id="forum-name" type="text" name="forumname" maxlength="100" value="{$forumname}"></div>
+            <div class="form-group"><label for="forum-description">{$lang['forum_desc']}</label><textarea class="form-control" id="forum-description" name="forumdesc" rows="5">{$forumdesc}</textarea></div>
+            <button class="btn btn-primary" type="submit" name="addforum" value="{$lang['add_forum']}">{$lang['add_forum']}</button>
+        </form>
+    </div>
+</div>

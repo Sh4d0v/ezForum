@@ -1,44 +1,37 @@
 {$errormessage}
-<form action="{$forumscript}?a=vforum&amp;f={$f}" method=post name=PForm class=formstyle>
-    <table class=formtable>
-        <tr>
-            <td class=formtitle>{$lang['new_topic']}</td>
-        </tr>
-        <tr>
-            <td class=formcell0>{$lang['topic_title']}<br><input class=inputtextbox type=text name=topictitle size=50
-                    maxlength=100 style="width:450px;" tabindex=1 value="{$topictitle}"></td>
-        </tr>
-        <tr>
-            <td class=smiliesbar>
-                {$smiliesbar}
-            </td>
-        </tr>
-        <tr>
-            <td class=bbbuttons>
-                <a href="javascript:paste_string(document.PForm.message,'[b][/b]')"><b>{$lang['bold']}</b></a>&nbsp;
-                <a href="javascript:paste_string(document.PForm.message,'[i][/i]')"><i>{$lang['italics']}</i></a>&nbsp;
-                <a href="javascript:paste_string(document.PForm.message,'[u][/u]')"><u>{$lang['underline']}</u></a>&nbsp;
-                <a href="javascript:paste_url(document.PForm.message,'{$lang['enter_url']}','{$lang['enter_desc']}')">{$lang['url']}</a>&nbsp;
-                <a href="javascript:paste_email(document.PForm.message,'{$lang['enter_email']}','{$lang['enter_desc']}')">{$lang['email']}</a>&nbsp;
-                <a href="javascript:paste_image(document.PForm.message,'{$lang['enter_image']}')">{$lang['image']}</a>&nbsp;
-                <a href="#bbcodes" onmousedown="javascript:quote_sel(document.PForm.message); return false;">{$lang['quote']}</a>&nbsp;
-                <a href="javascript:paste_string(document.PForm.message,'[code][/code]')">{$lang['code']}</a>
-            </td>
-        </tr>
-        <tr>
-            <td class=formcell1><a name=bbcodes></a>{$lang['message']}<br>
-                <textarea name=message cols=40 rows=10 tabindex=2 style="width:450px;">{$message}</textarea><br>
-                <input type=checkbox name=bbcodes value=1 {$bbcodes_check}>{$lang['enable_bbcodes']}<br>
-                <input type=checkbox name=emoticons value=1 {$emoticons_check}>{$lang['enable_emoticons']}<br>
-                <input type=checkbox name=makeurls value=1 {$makeurls_check}>{$lang['enable_makeurls']}
-            </td>
-        </tr>
-        <tr>
-            <td class=formcell0>
-                <input class=inputbutton type=submit name=createtopic
-                    value="{$lang['new_topic']}">&nbsp;&nbsp;&nbsp;&nbsp;<input type=checkbox name=preview
-                    value=1>{$lang['preview_topic']}<br>
-            </td>
-        </tr>
-    </table>
-</form>
+<div class="card forum-form-card mb-4">
+    <div class="forum-head-bar">{$lang['new_topic']}</div>
+    <div class="card-body">
+        <form action="{$forumscript}?a=vforum&amp;f={$f}" method="post" name="PForm" class="formstyle">
+            <div class="form-group">
+                <label for="topic-title">{$lang['topic_title']}</label>
+                <input class="form-control" id="topic-title" type="text" name="topictitle" maxlength="100" tabindex="1" value="{$topictitle}">
+            </div>
+            <div class="smiliesbar mb-2">{$smiliesbar}</div>
+            <div class="bb-toolbar d-flex flex-wrap mb-2" role="group" aria-label="Formatting">
+                <a class="btn btn-light border btn-sm" href="javascript:paste_string(document.PForm.message,'[b][/b]')"><strong>{$lang['bold']}</strong></a>
+                <a class="btn btn-light border btn-sm" href="javascript:paste_string(document.PForm.message,'[i][/i]')"><em>{$lang['italics']}</em></a>
+                <a class="btn btn-light border btn-sm" href="javascript:paste_string(document.PForm.message,'[u][/u]')"><u>{$lang['underline']}</u></a>
+                <a class="btn btn-light border btn-sm" href="javascript:paste_url(document.PForm.message,'{$lang['enter_url']}','{$lang['enter_desc']}')">{$lang['url']}</a>
+                <a class="btn btn-light border btn-sm" href="javascript:paste_email(document.PForm.message,'{$lang['enter_email']}','{$lang['enter_desc']}')">{$lang['email']}</a>
+                <a class="btn btn-light border btn-sm" href="javascript:paste_image(document.PForm.message,'{$lang['enter_image']}')">{$lang['image']}</a>
+                <a class="btn btn-light border btn-sm" href="#bbcodes" onmousedown="quote_sel(document.PForm.message); return false;">{$lang['quote']}</a>
+                <a class="btn btn-light border btn-sm" href="javascript:paste_string(document.PForm.message,'[code][/code]')">{$lang['code']}</a>
+            </div>
+            <div class="form-group">
+                <label for="message">{$lang['message']}</label>
+                <textarea class="form-control" name="message" id="message" rows="10" tabindex="2">{$message}</textarea>
+            </div>
+            <div class="form-row mb-3">
+                <div class="col-12 col-sm-4"><div class="form-check"><input class="form-check-input" id="bbcodes" type="checkbox" name="bbcodes" value="1" {$bbcodes_check}><label class="form-check-label" for="bbcodes">{$lang['enable_bbcodes']}</label></div></div>
+                <div class="col-12 col-sm-4"><div class="form-check"><input class="form-check-input" id="emoticons" type="checkbox" name="emoticons" value="1" {$emoticons_check}><label class="form-check-label" for="emoticons">{$lang['enable_emoticons']}</label></div></div>
+                <div class="col-12 col-sm-4"><div class="form-check"><input class="form-check-input" id="makeurls" type="checkbox" name="makeurls" value="1" {$makeurls_check}><label class="form-check-label" for="makeurls">{$lang['enable_makeurls']}</label></div></div>
+            </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" id="preview-topic" type="checkbox" name="preview" value="1">
+                <label class="form-check-label" for="preview-topic">{$lang['preview_topic']}</label>
+            </div>
+            <button class="btn btn-primary" type="submit" name="createtopic" value="1">{$lang['new_topic']}</button>
+        </form>
+    </div>
+</div>

@@ -1,17 +1,13 @@
 {$errormessage}
-<form action="{$forumscript}?a=movetopic&amp;t={$t}" method=post name=mform>
-    <table class=formtable>
-        <tr>
-            <td colspan=2 class=formtitle>&nbsp;&nbsp;<a href="{$forumhome}">{$forumtitle}</a> &raquo;
-                {$lang['move_topic']}</td>
-        </tr>
-        <tr>
-            <td class=formfield>{$lang['move_topic']} "$topic_title"</td>
-            <td class=formcell0>{$forums_select}</td>
-        </tr>
-        <tr>
-            <td class=formfield>&nbsp;</td>
-            <td class=formcell1><input class=inputbutton type=submit name=submit value="{$lang['move_topic']}"></td>
-            </td>
-    </table>
-</form>
+<div class="card forum-form-card mb-4">
+    <div class="forum-head-bar"><a href="{$forumhome}">{$forumtitle}</a> <span class="text-muted mx-1">/</span> {$lang['move_topic']}</div>
+    <div class="card-body">
+        <form action="{$forumscript}?a=movetopic&amp;t={$t}" method="post" name="mform" class="formstyle">
+            <div class="form-group">
+                <label for="move-topic">{$lang['move_topic']} "$topic_title"</label>
+                <div id="move-topic">{$forums_select}</div>
+            </div>
+            <button class="btn btn-primary" type="submit" name="submit" value="{$lang['move_topic']}">{$lang['move_topic']}</button>
+        </form>
+    </div>
+</div>

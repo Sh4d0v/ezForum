@@ -1,25 +1,9 @@
-<form action="{$adminfile}?a=announcement" method="post" class="formstyle">
-    <table class="formtable">
-        <tr>
-            <td colspan="2" class="formtitle">
-                <a href="{$forumhome}">{$forumtitle}</a> &raquo;
-                {$lang['announcement']}
-            </td>
-        </tr>
-        <tr>
-            <td class="formfield align-top">
-                <div>{$lang['announcement']}</div>
-                <div class="text-muted font-italic">{$lang['announcement_hint']}</div>
-            </td>
-            <td class="formcell0">
-                <textarea name="forumannouncement" rows="8" cols="60">{$announcement_text}</textarea>
-            </td>
-        </tr>
-        <tr>
-            <td class="formfield">&nbsp;</td>
-            <td class="formcell1">
-                <input class="inputbutton" type="submit" name="announcement" value="{$lang['save']}">
-            </td>
-        </tr>
-    </table>
-</form>
+<div class="card forum-form-card mb-4">
+    <div class="forum-head-bar"><a href="{$forumhome}">{$forumtitle}</a> <span class="text-muted mx-1">/</span> {$lang['announcement']}</div>
+    <div class="card-body">
+        <form action="{$adminfile}?a=announcement" method="post" class="formstyle">
+            <div class="form-group"><label for="forum-announcement">{$lang['announcement']}</label><small class="form-text text-muted">{$lang['announcement_hint']}</small><textarea class="form-control mt-2" id="forum-announcement" name="forumannouncement" rows="6">{$announcement_text}</textarea></div>
+            <button class="btn btn-primary" type="submit" name="announcement" value="{$lang['save']}">{$lang['save']}</button>
+        </form>
+    </div>
+</div>

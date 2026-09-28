@@ -1,11 +1,15 @@
 {$pagination}
-<table class=topictable cellspacing=0>
-    <tr>
-        <td class=topictitle width=69% style="text-align:left; padding-left: 10px;">{$results_title}</td>
-        <td class=topictitle width=7%>{$lang['replies']}</td>
-        <td class=topictitle width=7%>{$lang['views']}</td>
-        <td class=topictitle width=17%>{$lang['last_poster']}</td>
-    </tr>
-    {$topics_html}
-</table>
+<div class="table-responsive forum-table-wrap mb-3">
+    <table class="table table-sm table-hover table-striped mb-0 topic-list">
+        <thead class="forum-head-bar">
+            <tr>
+                <th scope="col">{$results_title}</th>
+                <th class="text-center" scope="col">{$lang['replies']}</th>
+                <th class="text-center" scope="col">{$lang['views']}</th>
+                <th scope="col">{$lang['last_poster']}</th>
+            </tr>
+        </thead>
+        <tbody>{$topics_html}</tbody>
+    </table>
+</div>
 {$pagination}

@@ -10,6 +10,26 @@
     font-weight: bold;
 }
 
+.forum-head-bar {
+    font-family: tahoma, verdana, arial;
+    border: 1px #fff solid;
+    background-color: #1f537b;
+    color: #fff;
+    padding: 4px;
+    font-size: 11px;
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+.forum-head-bar a {
+	color: #fff;
+}
+
+.forum-head-bar a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
 .success {
     background: #e8f4e7;
     border: 1px solid #6d9862;

@@ -1,10 +1,4 @@
-<table class=formtable>
-    <tr>
-        <td colspan=2 class=formtitle>&nbsp;&nbsp;<a href="{$forumhome}">{$forumtitle}</a> &raquo; {$lang['IP_users']}
-            {$ip}</td>
-    </tr>
-    <tr>
-        <td class=formfield>&nbsp;</td>
-        <td class=formcell0>{$user_list}</td>
-    </tr>
-</table>
+<div class="card mb-4">
+    <div class="forum-head-bar"><a href="{$forumhome}">{$forumtitle}</a> <span class="text-muted mx-1">/</span> {$lang['IP_users']} {$ip}</div>
+    <div class="card-body">{$user_list}</div>
+</div>

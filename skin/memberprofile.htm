@@ -1,43 +1,18 @@
-<table class=formtable>
-    <tr>
-        <td colspan=2 class=formtitle>&nbsp;&nbsp;<a href="{$forumhome}">{$forumtitle}</a> &raquo;
-            {$lang['member_profile']}</td>
-    </tr>
-    <tr>
-        <td class=formfield></td>
-        <td class=formcell0>$user_avatar</td>
-    </tr>
-    <tr>
-        <td class=formfield>{$lang['user_name']}</td>
-        <td class=formcell0>$member_name</td>
-    </tr>
-    <tr>
-        <td class=formfield>{$lang['registration_date']}</td>
-        <td class=formcell1>$member_regdate</td>
-    </tr>
-    <tr>
-        <td class=formfield>{$lang['email']}</td>
-        <td class=formcell0>$member_email</td>
-    </tr>
-    <tr>
-        <td class=formfield>{$lang['posts']}</td>
-        <td class=formcell1>$member_numposts</td>
-    </tr>
-    <tr>
-        <td class=formfield>{$lang['gold']}</td>
-        <td class=formcell1>$member_gold 🪙</td>
-    </tr>
-    <tr>
-        <td class=formfield>{$lang['language']}</td>
-        <td class=formcell1><img src="/images/flags/{$member_lang}.png" /></td>
-    </tr>
-    <tr>
-        <td class=formfield>{$lang['find_topics']}</td>
-        <td class=formcell0>$find_member_topics</td>
-    </tr>
-    <tr>
-        <td class=formfield>{$lang['user_bio']}</td>
-        <td class=formcell0>$member_bio</td>
-    </tr>
-
-</table>
+<div class="card forum-profile mb-4">
+    <div class="forum-head-bar"><a href="{$forumhome}">{$forumtitle}</a> <span class="text-muted mx-1">/</span> {$lang['member_profile']}</div>
+    <div class="card-body">
+        <div class="row align-items-center mb-4">
+            <div class="col-auto">$user_avatar</div>
+            <div class="col"><h2 class="h4 mb-0">$member_name</h2></div>
+        </div>
+        <dl class="row mb-0">
+            <dt class="col-sm-4 col-lg-3">{$lang['registration_date']}</dt><dd class="col-sm-8 col-lg-9">$member_regdate</dd>
+            <dt class="col-sm-4 col-lg-3">{$lang['email']}</dt><dd class="col-sm-8 col-lg-9">$member_email</dd>
+            <dt class="col-sm-4 col-lg-3">{$lang['posts']}</dt><dd class="col-sm-8 col-lg-9">$member_numposts</dd>
+            <dt class="col-sm-4 col-lg-3">{$lang['gold']}</dt><dd class="col-sm-8 col-lg-9">$member_gold 🪙</dd>
+            <dt class="col-sm-4 col-lg-3">{$lang['language']}</dt><dd class="col-sm-8 col-lg-9"><img src="/images/flags/{$member_lang}.png" alt="{$member_lang}" class="img-fluid"></dd>
+            <dt class="col-sm-4 col-lg-3">{$lang['find_topics']}</dt><dd class="col-sm-8 col-lg-9">$find_member_topics</dd>
+            <dt class="col-sm-4 col-lg-3">{$lang['user_bio']}</dt><dd class="col-sm-8 col-lg-9">$member_bio</dd>
+        </dl>
+    </div>
+</div>

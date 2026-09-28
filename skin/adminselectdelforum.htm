@@ -1,10 +1,4 @@
-<form action="{$adminfile}?a=delforum" method=post class=formstyle>
-<table class=formtable>
-<tr>
-<td class=formtitle>&nbsp;&nbsp;<a href="{$forumhome}">{$forumtitle}</a> &raquo; {$lang['select_forum']}</td>
-</tr>
-<tr>
-<td class=formcell0>{$forum_tree}</td>
-</tr>
-</table>
-</form>
+<div class="card forum-form-card mb-4">
+    <div class="forum-head-bar"><a href="{$forumhome}">{$forumtitle}</a> <span class="text-muted mx-1">/</span> {$lang['delete_forum']}</div>
+    <div class="card-body">{$forum_tree}</div>
+</div>
