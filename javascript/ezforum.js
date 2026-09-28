@@ -22,23 +22,40 @@ function paste_smilie(e, s) {
 }
 
 function paste_string(e, s) {
+  var wrapper = s.match(/^(\[([a-z]+)(?:=[^\]]+)?\])(\[\/\2\])$/i);
+
   //IE support
   if (document.selection) {
     e.focus();
     var sel = document.selection.createRange();
-    sel.text = s;
-    sel.moveStart('character', s.indexOf(']') + 1 - s.length);
-    sel.moveEnd('character', s.lastIndexOf('[') - s.length);
-    sel.select();
+    var selectedText = sel.text;
+
+    if (selectedText.length > 0 && wrapper) {
+      sel.text = wrapper[1] + selectedText + wrapper[3];
+    } else {
+      sel.text = s;
+      sel.moveStart('character', s.indexOf(']') + 1 - s.length);
+      sel.moveEnd('character', s.lastIndexOf('[') - s.length);
+      sel.select();
+    }
   }
   //MOZILLA/NETSCAPE support
   else
     if (typeof e.selectionStart === 'number') {
       var startPos = e.selectionStart;
       var endPos = e.selectionEnd;
-      e.value = e.value.substring(0, startPos) + s + e.value.substring(endPos, e.value.length);
-      e.selectionStart = startPos + s.indexOf("]") + 1;
-      e.selectionEnd = startPos + s.lastIndexOf('[');
+      var selectedText = e.value.substring(startPos, endPos);
+
+      if (selectedText.length > 0 && wrapper) {
+        var wrappedText = wrapper[1] + selectedText + wrapper[3];
+        e.value = e.value.substring(0, startPos) + wrappedText + e.value.substring(endPos, e.value.length);
+        e.selectionStart = startPos + wrapper[1].length;
+        e.selectionEnd = e.selectionStart + selectedText.length;
+      } else {
+        e.value = e.value.substring(0, startPos) + s + e.value.substring(endPos, e.value.length);
+        e.selectionStart = startPos + s.indexOf("]") + 1;
+        e.selectionEnd = startPos + s.lastIndexOf('[');
+      }
     }
     else {
       e.value += s;
