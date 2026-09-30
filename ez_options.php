@@ -72,8 +72,11 @@ $enablegzip = 0; // 0 - no; 1 - yes
 $visittimeout = 600;
 $usereditposttimeout = 1200;
 
-// Default forum timezone (offset in hours)
-$forumtimezone = 2; // default forum zone
+// Default forum timezone (IANA identifier; e.g. 'Europe/Warsaw')
+$forumtimezone = 'Europe/Warsaw';
+// Current offset used as the initial numeric timezone preference for new accounts.
+$forumtimezone_object = new DateTimeZone($forumtimezone);
+$forumtimezoneoffset = $forumtimezone_object->getOffset(new DateTimeImmutable('now', $forumtimezone_object)) / 3600;
 
 // Registration mode
 // 1 = register user immediately, 0 = send e-mail with generated password

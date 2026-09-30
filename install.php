@@ -154,7 +154,7 @@ $adminpass_safe = $mysqli->real_escape_string($adminpass);
 $adminemail_safe = $mysqli->real_escape_string($adminemail);
 
 $mysqli->query("INSERT INTO {$dbpref}users (user_id, user_name, user_pass, user_email, user_regdate, user_timezone)
-                VALUES (1, '{$adminuser_safe}', '" . sha1($shaprefix . $adminpass_safe) . "', '{$adminemail_safe}', '{$now}', '{$forumtimezone}')")
+                VALUES (1, '{$adminuser_safe}', '" . sha1($shaprefix . $adminpass_safe) . "', '{$adminemail_safe}', '{$now}', '{$forumtimezoneoffset}')")
   or die($mysqli->error);
 
 echo 'Forum Installed Successfully!';

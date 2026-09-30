@@ -119,6 +119,7 @@ if (
     'editforum',
     'announcement',
     'gzip',
+    'timezone',
     'optimize',
     'phpinfo',
     'check_version',
@@ -303,6 +304,70 @@ switch ($action) {
       $gzip_on_selected = ($gzip_enabled === '1') ? 'selected' : '';
       $gzip_off_selected = ($gzip_enabled === '0') ? 'selected' : '';
       print eval (get_template('admingzip'));
+    }
+    break;
+  case 'timezone':
+    $timezone_identifiers = DateTimeZone::listIdentifiers(DateTimeZone::ALL_WITH_BC);
+
+    if (isset($_POST['save_timezone'])) {
+      $selected_timezone = $_POST['forum_timezone'] ?? null;
+      if (!is_string($selected_timezone) || !in_array($selected_timezone, $timezone_identifiers, true)) {
+        show_error($lang['timezone_save_error']);
+      } else {
+        $options_file = __DIR__ . '/ez_options.php';
+        $options_content = @file_get_contents($options_file);
+
+        if ($options_content === false || !is_writable($options_file)) {
+          show_error($lang['timezone_save_error']);
+        } else {
+          $replacement_count = 0;
+          $updated_options = preg_replace_callback(
+            '/^\$forumtimezone\s*=.*?;[^\r\n]*/m',
+            static fn() => '$forumtimezone = ' . var_export($selected_timezone, true) . ';',
+            $options_content,
+            1,
+            $replacement_count
+          );
+
+          if ($updated_options === null || $replacement_count !== 1) {
+            show_error($lang['timezone_save_error']);
+          } elseif (@file_put_contents($options_file, $updated_options, LOCK_EX) === false) {
+            show_error($lang['timezone_save_error']);
+          } else {
+            if (function_exists('opcache_invalidate'))
+              @opcache_invalidate($options_file, true);
+            show_message($lang['timezone_saved']);
+          }
+        }
+      }
+    } else {
+      $current_timezone = is_string($forumtimezone) && in_array($forumtimezone, $timezone_identifiers, true)
+        ? $forumtimezone
+        : 'Europe/Warsaw';
+      $timezone_options = '';
+      $current_region = null;
+
+      foreach ($timezone_identifiers as $timezone_identifier) {
+        $timezone_parts = explode('/', $timezone_identifier);
+        $region = (count($timezone_parts) > 1) ? $timezone_parts[0] : 'Other';
+        if ($region !== $current_region) {
+          if ($current_region !== null)
+            $timezone_options .= '</optgroup>';
+          $current_region = $region;
+          $timezone_options .= '<optgroup label="' . htmlspecialchars($region, ENT_QUOTES, 'UTF-8') . '">';
+        }
+
+        $zone = new DateTimeZone($timezone_identifier);
+        $utc_offset = (new DateTimeImmutable('now', $zone))->format('P');
+        $label = $timezone_identifier . ' (UTC' . $utc_offset . ')';
+        $selected = ($timezone_identifier === $current_timezone) ? ' selected' : '';
+        $timezone_options .= '<option value="' . htmlspecialchars($timezone_identifier, ENT_QUOTES, 'UTF-8') . '"' . $selected . '>'
+          . htmlspecialchars($label, ENT_QUOTES, 'UTF-8') . '</option>';
+      }
+      if ($current_region !== null)
+        $timezone_options .= '</optgroup>';
+
+      print eval (get_template('admintimezone'));
     }
     break;
   case 'phpinfo':

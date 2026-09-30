@@ -1,0 +1,13 @@
+<div class="card forum-form-card mb-4">
+    <div class="forum-head-bar"><a href="{$forumhome}">{$forumtitle}</a> <span class="text-muted mx-1">/</span> {$lang['admin_forum_timezone']}</div>
+    <div class="card-body">
+        <form action="{$adminfile}?a=timezone" method="post" class="formstyle">
+            <div class="form-group">
+                <label for="forum-timezone">{$lang['admin_forum_timezone']}</label>
+                <select class="form-control" id="forum-timezone" name="forum_timezone">{$timezone_options}</select>
+                <small class="form-text text-muted">{$lang['forum_timezone_hint']}</small>
+            </div>
+            <button class="btn btn-primary" type="submit" name="save_timezone" value="1">{$lang['save']}</button>
+        </form>
+    </div>
+</div>

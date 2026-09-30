@@ -62,7 +62,7 @@ if (isset($_POST['register'])) {
   if ($errormessage === null) {
     $now = time();
     mysqli_query($mysqli, "INSERT INTO {$dbpref}users (user_name, user_pass, user_email, user_regdate, user_lasttimereadpost, user_lastsession, user_timezone) 
-                          VALUES ('$username', '" . sha1($shaprefix . $pass) . "','$useremail','$now','$now','$now', '$forumtimezone')");
+                          VALUES ('$username', '" . sha1($shaprefix . $pass) . "','$useremail','$now','$now','$now', '$forumtimezoneoffset')");
 
     if ($registermode == 0) {
       require('./code/emails/welcome_email.php');

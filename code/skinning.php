@@ -351,7 +351,7 @@ function get_forum_path(int $forum_id, ?string $topic_title = null): string
   return '<div class="forumpath"><a href="' . $forumhome . '">' . $forumtitle . '</a>&nbsp;/&nbsp;' . $forum_path . '</div>';
 }
 
-function get_timezone_select(int $tz): string
+function get_timezone_select(int|float|string $tz): string
 {
   global $timezones;
 
@@ -359,7 +359,7 @@ function get_timezone_select(int $tz): string
 
   foreach ($timezones as $zone => $zonename) {
     $escapedZoneName = htmlspecialchars($zonename, ENT_QUOTES, 'UTF-8');
-    $selected = ($zone === $tz) ? ' selected' : '';
+    $selected = (is_numeric($zone) && is_numeric($tz) && (float) $zone === (float) $tz) ? ' selected' : '';
     $select .= '<option value="' . $zone . '"' . $selected . '>' . $escapedZoneName . '</option>';
   }
 
@@ -368,12 +368,22 @@ function get_timezone_select(int $tz): string
   return $select;
 }
 
-function format_datetime(int $time, int $timezone = 0): string
+function format_forum_timestamp(int $time, string $format, int|float|string $timezone): string
 {
-  global $months, $datetimeformat, $engmonths;
+  global $months, $engmonths;
 
-  $time += ($timezone * 3600);
-  $datetime = gmdate($datetimeformat, $time);
+  if (is_string($timezone) && !is_numeric($timezone)) {
+    try {
+      $datetime = (new DateTimeImmutable('@' . $time))
+        ->setTimezone(new DateTimeZone($timezone))
+        ->format($format);
+    } catch (Throwable $exception) {
+      $datetime = gmdate($format, $time);
+    }
+  } else {
+    $offset_seconds = (int) round((float) $timezone * 3600);
+    $datetime = gmdate($format, $time + $offset_seconds);
+  }
 
   if (isset($months) && is_array($months)) {
     $datetime = str_replace($engmonths, $months, $datetime);
@@ -382,32 +392,22 @@ function format_datetime(int $time, int $timezone = 0): string
   return $datetime;
 }
 
-function format_date(int $time, int $timezone = 0): string
+function format_datetime(int $time, int|float|string $timezone = 0): string
 {
-  global $months, $dateformat, $engmonths;
-
-  $time += ($timezone * 3600);
-  $date = gmdate($dateformat, $time);
-
-  if (isset($months) && is_array($months)) {
-    $date = str_replace($engmonths, $months, $date);
-  }
-
-  return $date;
+  global $datetimeformat;
+  return format_forum_timestamp($time, $datetimeformat, $timezone);
 }
 
-function format_shortdate(int $time, int $timezone = 0): string
+function format_date(int $time, int|float|string $timezone = 0): string
 {
-  global $months, $shortdateformat, $engmonths;
+  global $dateformat;
+  return format_forum_timestamp($time, $dateformat, $timezone);
+}
 
-  $time += ($timezone * 3600);
-  $date = gmdate($shortdateformat, $time);
-
-  if (isset($months) && is_array($months)) {
-    $date = str_replace($engmonths, $months, $date);
-  }
-
-  return $date;
+function format_shortdate(int $time, int|float|string $timezone = 0): string
+{
+  global $shortdateformat;
+  return format_forum_timestamp($time, $shortdateformat, $timezone);
 }
 
 function get_user_type(int $user_id, int $forum_id): ?string
