@@ -1,0 +1,15 @@
+<div class="card forum-form-card mb-4">
+    <div class="forum-head-bar"><a href="{$forumhome}">{$forumtitle}</a> <span class="text-muted mx-1">/</span> {$lang['admin_gzip_compression']}</div>
+    <div class="card-body">
+        <form action="{$adminfile}?a=gzip" method="post" class="formstyle">
+            <div class="form-group">
+                <label for="gzip-enabled">{$lang['admin_gzip_compression']}</label>
+                <select class="form-control" id="gzip-enabled" name="gzip_enabled">
+                    <option value="1" {$gzip_on_selected}>{$lang['on']}</option>
+                    <option value="0" {$gzip_off_selected}>{$lang['off']}</option>
+                </select>
+            </div>
+            <button class="btn btn-primary" type="submit" name="save_gzip" value="1">{$lang['save']}</button>
+        </form>
+    </div>
+</div>

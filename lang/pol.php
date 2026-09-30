@@ -275,6 +275,11 @@ $lang = array(
     'admin_forum_url' => 'Adres URL forum',
     'admin_update_forum' => 'Sprawdź aktualizację forum',
     'admin_phpinfo' => 'Pokaż info o PHP',
+    'admin_gzip_compression' => 'Kompresja gzip',
+    'gzip_saved' => 'Ustawienie kompresji gzip zostało zapisane.',
+    'gzip_save_error' => 'Nie udało się zapisać ustawienia gzip. Upewnij się, że serwer WWW może zapisywać plik ez_options.php.',
+    'on' => 'Włączona',
+    'off' => 'Wyłączona',
     'admin_general_info' => 'Ogólne informacje',
     'admin_forum_version' => 'Wersja forum',
 

@@ -118,6 +118,7 @@ if (
     'addforum',
     'editforum',
     'announcement',
+    'gzip',
     'optimize',
     'phpinfo',
     'check_version',
@@ -265,6 +266,43 @@ switch ($action) {
       }
 
       print eval (get_template('admineditannouncement'));
+    }
+    break;
+  case 'gzip':
+    if (isset($_POST['save_gzip'])) {
+      $gzip_choice = $_POST['gzip_enabled'] ?? null;
+      $gzip_enabled = (is_string($gzip_choice) && $gzip_choice === '1') ? 1 : 0;
+      $options_file = __DIR__ . '/ez_options.php';
+      $options_content = @file_get_contents($options_file);
+
+      if ($options_content === false || !is_writable($options_file)) {
+        show_error($lang['gzip_save_error']);
+      } else {
+        $replacement_count = 0;
+        $updated_options = preg_replace_callback(
+          '/^\$enablegzip\s*=\s*[01]\s*;[^\r\n]*/m',
+          static fn() => '$enablegzip = ' . $gzip_enabled . '; // 0 - no; 1 - yes',
+          $options_content,
+          1,
+          $replacement_count
+        );
+
+        if ($updated_options === null || $replacement_count !== 1) {
+          show_error($lang['gzip_save_error']);
+        } elseif (@file_put_contents($options_file, $updated_options, LOCK_EX) === false) {
+          show_error($lang['gzip_save_error']);
+        } else {
+          if (function_exists('opcache_invalidate'))
+            @opcache_invalidate($options_file, true);
+          $enablegzip = $gzip_enabled;
+          show_message($lang['gzip_saved']);
+        }
+      }
+    } else {
+      $gzip_enabled = ((int) $enablegzip === 1) ? '1' : '0';
+      $gzip_on_selected = ($gzip_enabled === '1') ? 'selected' : '';
+      $gzip_off_selected = ($gzip_enabled === '0') ? 'selected' : '';
+      print eval (get_template('admingzip'));
     }
     break;
   case 'phpinfo':
