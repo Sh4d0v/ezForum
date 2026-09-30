@@ -25,23 +25,20 @@ if ($m <= 0) {
 }
 
 $user_id_to_query = intval($m);
-$result = mysqli_query($mysqli,"SELECT user_name, user_regdate, user_bio, user_bio_status, user_email, user_email_public, user_allowviewonline, user_numposts, user_gold, user_lang, user_lasttimereadpost, user_avatar FROM {$dbpref}users WHERE user_id='{$user_id_to_query}'");
+$result = mysqli_query($mysqli,"SELECT user_name, user_regdate, user_bio, user_bio_status, user_allowviewonline, user_numposts, user_gold, user_lang, user_lasttimereadpost, user_avatar FROM {$dbpref}users WHERE user_id='{$user_id_to_query}'");
 if (mysqli_num_rows($result) != 1)
 {
   $title = $forumtitle.' &raquo; '.$lang['member_profile'];
   require_once('forumheader.php');
   show_error($lang['no_such_user']);
 } else {
-  list($member_name, $member_regdate, $member_bio, $member_bio_status, $member_email, $member_email_public, $member_allowviewonline, $member_numposts, $member_gold, $member_lang, $member_lasttimereadpost, $user_avatar) = mysqli_fetch_row($result);
+  list($member_name, $member_regdate, $member_bio, $member_bio_status, $member_allowviewonline, $member_numposts, $member_gold, $member_lang, $member_lasttimereadpost, $user_avatar) = mysqli_fetch_row($result);
   $title = $forumtitle.' &raquo; '.$lang['member_profile'].' &raquo; '.$member_name;
   require_once __DIR__ . '/forumheader.php';
   
   $user_avatar = htmlspecialchars($user_avatar, ENT_QUOTES, 'UTF-8');
   $user_avatar = '<img src="' . $user_avatar . '" alt="' . $member_name . '" border="0" />';
 
-  if ($member_email_public == 0)
-    $member_email = null;
-    
   $member_bio = format_html($member_bio);
   
   if (($member_bio_status & 8) != 0)
