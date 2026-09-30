@@ -58,6 +58,14 @@ foreach ($_COOKIE as $var => $val) {
 
 require_once __DIR__ . '/ez_options.php';
 require_once __DIR__ . '/code/skinning.php';
+
+$available_languages = array_map(static fn($file) => basename($file, '.php'), glob(__DIR__ . '/lang/*.php') ?: []);
+$cookie_language = $_COOKIE['language'] ?? null;
+if (is_string($cookie_language) && in_array($cookie_language, $available_languages, true)) {
+  $lang = $cookie_language;
+}
+if (!in_array($lang, $available_languages, true))
+  $lang = in_array('eng', $available_languages, true) ? 'eng' : ($available_languages[0] ?? 'eng');
 require_once __DIR__ . '/lang/' . $lang . '.php';
 
 header('Content-Type: text/html; charset=' . $lang['charset']);

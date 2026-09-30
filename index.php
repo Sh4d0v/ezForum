@@ -45,20 +45,14 @@ foreach ($_COOKIE as $var => $val) {
 require_once __DIR__ . '/ez_options.php';
 require_once __DIR__ . '/code/skinning.php';
 
-/**
- * Read language value from cookie if present and include appropriate language file.
- */
-if (isset($_COOKIE['language'])) {
-  $lang = $_COOKIE['language'];
-}
-if (empty($lang) || !preg_match('/^[A-Za-z0-9_-]+$/', $lang)) {
-  $lang = 'eng';
-}
+/** Read a supported language preference from the cookie, if present. */
+$available_languages = array_map(static fn($file) => basename($file, '.php'), glob(__DIR__ . '/lang/*.php') ?: []);
+$cookie_language = $_COOKIE['language'] ?? null;
+if (is_string($cookie_language) && in_array($cookie_language, $available_languages, true))
+  $lang = $cookie_language;
+if (!in_array($lang, $available_languages, true))
+  $lang = in_array('eng', $available_languages, true) ? 'eng' : ($available_languages[0] ?? 'eng');
 $lang_file = __DIR__ . '/lang/' . $lang . '.php';
-
-if (!file_exists($lang_file)) {
-  $lang_file = __DIR__ . '/lang/eng.php';
-}
 require_once $lang_file;
 
 /**

@@ -23,9 +23,37 @@ $v_signatures_and_avatars = $signaturesandavatars ? 'visible' : 'collapse';
 
 $errormessage = null;
 $username = $user_name;
+$language_files = glob(__DIR__ . '/lang/*.php') ?: [];
+$available_languages = array_map(static fn($file) => basename($file, '.php'), $language_files);
+$user_id_safe = (int) $user_id;
+$language_result = mysqli_query($mysqli, "SELECT user_lang FROM {$dbpref}users WHERE user_id='$user_id_safe'");
+if (!$language_result || mysqli_num_rows($language_result) !== 1)
+  die($lang['fatal_error']);
+$language_row = mysqli_fetch_row($language_result);
+$current_lang = $language_row[0];
+if (!is_string($current_lang) || !in_array($current_lang, $available_languages, true))
+  $current_lang = in_array('eng', $available_languages, true) ? 'eng' : ($available_languages[0] ?? 'eng');
+
+$render_language_select = static function (string $selected_language, array $languages): string {
+  $html = '<select name="user_lang" class="form-control">';
+  foreach ($languages as $language_code) {
+    $selected = ($language_code === $selected_language) ? ' selected' : '';
+    $safe_code = htmlspecialchars($language_code, ENT_QUOTES, 'UTF-8');
+    $html .= '<option value="' . $safe_code . '"' . $selected . '>' . htmlspecialchars(strtoupper($language_code), ENT_QUOTES, 'UTF-8') . '</option>';
+  }
+  return $html . '</select>';
+};
+$htmllanguages = $render_language_select($current_lang, $available_languages);
+
 if (isset($_POST['usercp'])) {
   $userbio = stripslashes($userbio);
   $usersignature = stripslashes($usersignature);
+
+  $selected_lang = (isset($user_lang) && is_string($user_lang) && in_array($user_lang, $available_languages, true))
+    ? $user_lang
+    : $current_lang;
+  $current_lang = $selected_lang;
+  $htmllanguages = $render_language_select($current_lang, $available_languages);
 
   if (!preg_match('#^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$#i', $useremail))
     $errormessage = get_error($lang['invalid_email']);
@@ -193,17 +221,19 @@ if (isset($_POST['usercp'])) {
 
     $userbio = addslashes($userbio);
     $usersignature = addslashes($usersignature);
+    $selected_lang_sql = mysqli_real_escape_string($mysqli, $selected_lang);
 
     if (isset($eraseavatar))
       mysqli_query($mysqli, "UPDATE {$dbpref}users SET user_avatar='' WHERE user_id='$user_id'");
 
     if (strlen($newpass) != 0) {
       $newpass = sha1($shaprefix . $newpass);
-      mysqli_query($mysqli, "UPDATE {$dbpref}users SET user_email='$useremail', user_timezone='$usertimezone', user_email_public='$emailpublic', user_allowviewonline='$viewonline', user_bio='$userbio', user_bio_status='$user_bio_status', user_signature='$usersignature', user_signature_status='$user_sig_status', user_view_signatures='$viewsignatures', user_view_avatars='$viewavatars', user_pass='$newpass' WHERE user_id='$user_id'");
+      mysqli_query($mysqli, "UPDATE {$dbpref}users SET user_email='$useremail', user_timezone='$usertimezone', user_lang='$selected_lang_sql', user_email_public='$emailpublic', user_allowviewonline='$viewonline', user_bio='$userbio', user_bio_status='$user_bio_status', user_signature='$usersignature', user_signature_status='$user_sig_status', user_view_signatures='$viewsignatures', user_view_avatars='$viewavatars', user_pass='$newpass' WHERE user_id='$user_id'");
       //set new cookie
       setcookie($cookiename, serialize(array($user_id, $newpass)), 0, $cookiepath, $cookiedomain, $cookiesecure);
     } else
-      mysqli_query($mysqli, "UPDATE {$dbpref}users SET user_email='$useremail', user_timezone='$usertimezone', user_email_public='$emailpublic', user_allowviewonline='$viewonline', user_bio='$userbio', user_bio_status='$user_bio_status', user_signature='$usersignature', user_signature_status='$user_sig_status', user_view_signatures='$viewsignatures', user_view_avatars='$viewavatars' WHERE user_id='$user_id'");
+      mysqli_query($mysqli, "UPDATE {$dbpref}users SET user_email='$useremail', user_timezone='$usertimezone', user_lang='$selected_lang_sql', user_email_public='$emailpublic', user_allowviewonline='$viewonline', user_bio='$userbio', user_bio_status='$user_bio_status', user_signature='$usersignature', user_signature_status='$user_sig_status', user_view_signatures='$viewsignatures', user_view_avatars='$viewavatars' WHERE user_id='$user_id'");
+    setcookie('language', $selected_lang, 0, $cookiepath, $cookiedomain, $cookiesecure);
     header("Location: {$forumscript}?a=member&m={$user_id}");
   }
 } else {
@@ -233,18 +263,6 @@ if (isset($_POST['usercp'])) {
     $current_avatar = null;
   else
     $current_avatar = '<img src="' . $user_avatar . '" border=0><br><input type=checkbox name=eraseavatar value=1>' . $lang['erase_avatar'] . '.<br>';
-
-  $htmllanguages = '';
-  $lang_files = glob(__DIR__ . '/lang/*.php'); // find all PHP files in lang folder
-  $current_lang = (isset($_COOKIE['language']) && $_COOKIE['language'] !== '') ? $_COOKIE['language'] : 'eng';
-  $htmllanguages .= '<select name="user_lang">';
-  foreach ($lang_files as $file) {
-    $lang_code = basename($file, '.php'); // get file name without extension
-    $selected = ($lang_code == $current_lang) ? ' selected' : '';
-    $htmllanguages .= '<option value="' . htmlspecialchars($lang_code) . '"' . $selected . '>' . htmlspecialchars(strtoupper($lang_code)) . '</option>';
-  }
-  $htmllanguages .= '</select>';
-
 
   print eval (get_template('userpanel'));
 }
